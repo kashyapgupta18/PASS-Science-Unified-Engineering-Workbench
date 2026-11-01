@@ -1,0 +1,39 @@
+# Build
+build/
+out/
+cmake-build-*/
+*.obj
+*.o
+*.exe
+*.pdb
+*.ilk
+*.lib
+*.dll
+*.exp
+
+# IDE
+.vs/
+.vscode/
+*.suo
+*.user
+*.sln
+*.vcxproj*
+
+# OS
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Package output (keep the template, not builds)
+package/
+
+# Node
+node_modules/
+dist/
+.cache/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
