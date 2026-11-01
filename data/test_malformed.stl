@@ -1,0 +1,9 @@
+solid broken
+  facet normal 0 0 1
+    outer loop
+      vertex 1 2 abc
+      vertex 4 5 6
+      vertex 7 8 9
+    endloop
+  endfacet
+endsolid broken
