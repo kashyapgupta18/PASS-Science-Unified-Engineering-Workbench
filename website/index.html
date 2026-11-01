@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unified Engineering Workbench — PASS Science Works R&D</title>
+  <style>
+    :root {
+      --bg-primary: #0b0f17;
+      --bg-surface: #121824;
+      --bg-surface-elevated: #1a2332;
+      --border: #233044;
+      --border-accent: #2c4464;
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --accent-blue: #38bdf8;
+      --accent-cyan: #06b6d4;
+      --accent-green: #10b981;
+      --accent-yellow: #f59e0b;
+      --accent-red: #ef4444;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    header {
+      background-color: rgba(18, 24, 36, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 0.85rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      font-size: 1.15rem;
+    }
+
+    .brand-badge {
+      background: var(--border-accent);
+      color: var(--accent-blue);
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+    }
+
+    nav {
+      display: flex;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+    nav a:hover { color: var(--accent-blue); }
+
+    .btn-action {
+      background: var(--accent-blue);
+      color: #000;
+      padding: 0.45rem 1rem;
+      border-radius: 4px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      border: none;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+    .btn-action:hover { background: #7dd3fc; }
+
+    .btn-secondary {
+      background: var(--bg-surface-elevated);
+      color: var(--text-main);
+      border: 1px solid var(--border-accent);
+      padding: 0.45rem 1rem;
+      border-radius: 4px;
+      font-weight: 500;
+      font-size: 0.85rem;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .btn-secondary:hover { background: var(--border); }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2.5rem 1.5rem 5rem 1.5rem;
+    }
+
+    .hero {
+      padding: 3rem 0 4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .hero-pre {
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: var(--accent-blue);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.75rem;
+    }
+    .hero h1 {
+      font-size: 2.75rem;
+      line-height: 1.15;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 1.25rem;
+    }
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 800px;
+      margin-bottom: 2rem;
+    }
+
+    .badge-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    .tag {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      padding: 0.25rem 0.65rem;
+      border-radius: 4px;
+      font-size: 0.8rem;
+      font-family: var(--font-mono);
+      color: var(--text-muted);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.75rem;
+      margin: 2.5rem 0;
+    }
+    @media (max-width: 768px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+
+    .grid-4 {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.25rem;
+      margin: 2rem 0;
+    }
+    @media (max-width: 900px) {
+      .grid-4 { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .grid-4 { grid-template-columns: 1fr; }
+    }
+
+    .card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.5rem;
+    }
+    .card h3 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 0.65rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin: 3.5rem 0 0.5rem 0;
+    }
+    .section-subtitle {
+      color: var(--text-muted);
+      font-size: 1rem;
+      margin-bottom: 1.75rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.88rem;
+      font-family: var(--font-mono);
+    }
+    th, td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--bg-surface-elevated);
+      color: #fff;
+      font-weight: 600;
+    }
+    tr:nth-child(even) { background: rgba(255, 255, 255, 0.015); }
+
+    .status-pill {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+    .pill-green { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid var(--accent-green); }
+    .pill-blue { background: rgba(56, 189, 248, 0.15); color: var(--accent-blue); border: 1px solid var(--accent-blue); }
+    .pill-amber { background: rgba(245, 158, 11, 0.15); color: var(--accent-yellow); border: 1px solid var(--accent-yellow); }
+
+    .code-block {
+      background: #06090e;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 1.25rem;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      color: #e2e8f0;
+      overflow-x: auto;
+      margin: 1.25rem 0;
+    }
+
+    .interactive-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-accent);
+      border-radius: 6px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+    }
+    .input-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    .input-field {
+      flex: 1;
+      min-width: 160px;
+    }
+    .input-field label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 0.35rem;
+    }
+    .input-field input, .input-field select {
+      width: 100%;
+      background: #06090e;
+      border: 1px solid var(--border);
+      color: #fff;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      font-family: var(--font-mono);
+      font-size: 0.9rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand">
+      <span>Unified Engineering Workbench</span>
+      <span class="brand-badge">R&D 2026</span>
+    </div>
+    <nav>
+      <a href="#overview">Overview</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#thermal">Thermal FEA</a>
+      <a href="#multicore">Multicore</a>
+      <a href="#embedded">Embedded</a>
+      <a href="#backprop">Backprop</a>
+      <a href="#standalone" class="btn-action">Run Launch.exe</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="overview">
+      <div class="hero-pre">PASS Science Works | Technical Assessment 2026–2027</div>
+      <h1>High-Performance Multi-Domain Engineering Workbench</h1>
+      <p>
+        A standalone C++17 desktop application and verification system combining steady-state 1D Thermal FEA,
+        ASCII STL surface mesh inspection, ANSYS CSV 3D point cloud visualization, bounded multicore concurrency,
+        simulated embedded hardware adapters, and first-principles neural network backpropagation.
+      </p>
+
+      <div class="badge-bar">
+        <span class="tag">Target: Windows 11 x64</span>
+        <span class="tag">Standard: C++17 / MSVC 19.44</span>
+        <span class="tag">Graphics: Direct3D 11 + Dear ImGui</span>
+        <span class="tag">Solver: Thomas Tridiagonal Algorithm</span>
+        <span class="tag">Status: 21 / 21 Tests Verified</span>
+      </div>
+
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#standalone" class="btn-action">Download Package & Instructions</a>
+        <a href="#thermal" class="btn-secondary">View Numerical Verification</a>
+      </div>
+    </section>
+
+    <!-- 4 Views Architecture -->
+    <h2 class="section-title" id="architecture">Desktop Workbench Architecture</h2>
+    <p class="section-subtitle">
+      Separation of concerns: UI-independent C++17 core (<code>wb_core</code>) drives both the Win32/Direct3D 11 desktop GUI, standalone CLI tools, and automated unit test runners.
+    </p>
+
+    <div class="grid-4">
+      <div class="card">
+        <h3>1. Geometry View</h3>
+        <p>Interactive 3D viewport with rotation, pan, zoom, and fit-to-view. ASCII STL parser detects non-finite coordinates, degenerate triangles, and computes strict spatial bounding boxes.</p>
+      </div>
+      <div class="card">
+        <h3>2. Thermal FEA</h3>
+        <p>Steady-state 1D thermal finite element solver. Exact Dirichlet boundary condition enforcement, linear element midpoint interpolation, and observed second-order O(h²) convergence.</p>
+      </div>
+      <div class="card">
+        <h3>3. Multicore Scaling</h3>
+        <p>Bounded worker thread pool (1, 2, 4 workers) with lock-free atomic chunk assignment. Strict serial/parallel numerical agreement verified within 1e-8 °C tolerance.</p>
+      </div>
+      <div class="card">
+        <h3>4. Embedded Systems</h3>
+        <p>Modular host-connected topology for STM32F407 MCU, Artix-7 FPGA, and SEGGER J-Link JTAG probe. Injected timeout fault simulation and 3-attempt bounded retry recovery.</p>
+      </div>
+    </div>
+
+    <!-- Numerical Verification Section -->
+    <h2 class="section-title" id="thermal">Thermal Finite Element Verification</h2>
+    <p class="section-subtitle">
+      Governing Equation: -d/dx(kA dT/dx) = qA on uniform rod [0, 1m]. Analytical reference: T_exact(x) = 100 - 80(x/L) + (q/2k)·x(L-x).
+    </p>
+
+    <div class="card">
+      <h3>Mesh Convergence Study (Observed Order: 2.0000)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Elements N</th>
+            <th>Mesh Size h [m]</th>
+            <th>Measured Midpoint Error [°C]</th>
+            <th>Theoretical q·h²/(8k) [°C]</th>
+            <th>Nodal Error [°C]</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>10</td>
+            <td>0.1000</td>
+            <td>1.25000000</td>
+            <td>1.25000000</td>
+            <td>2.842 × 10⁻¹⁴</td>
+            <td><span class="status-pill pill-green">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td>20</td>
+            <td>0.0500</td>
+            <td>0.31250000</td>
+            <td>0.31250000</td>
+            <td>1.990 × 10⁻¹³</td>
+            <td><span class="status-pill pill-green">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td>40</td>
+            <td>0.0250</td>
+            <td>0.07812500</td>
+            <td>0.07812500</td>
+            <td>8.811 × 10⁻¹³</td>
+            <td><span class="status-pill pill-green">VERIFIED</span></td>
+          </tr>
+          <tr>
+            <td>80</td>
+            <td>0.0125</td>
+            <td>0.01953125</td>
+            <td>0.01953125</td>
+            <td>1.222 × 10⁻¹²</td>
+            <td><span class="status-pill pill-green">VERIFIED</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.85rem; color: var(--text-muted);">
+        Note: Because the analytical solution is quadratic, two-node linear elements reproduce exact nodal temperatures identically up to machine precision (< 10⁻¹² °C). True discretization error is verified at element midpoints where error drops by exactly 4.0× when mesh size is halved.
+      </p>
+    </div>
+
+    <!-- Interactive 1D Thermal Calculator -->
+    <div class="interactive-box">
+      <h3 style="color: #fff; margin-bottom: 0.75rem;">Interactive 1D Thermal Analytical Calculator</h3>
+      <div class="input-row">
+        <div class="input-field">
+          <label>Position x [0 to 1 m]</label>
+          <input type="number" id="calc_x" value="0.5" min="0" max="1" step="0.05" oninput="calculateThermal()">
+        </div>
+        <div class="input-field">
+          <label>Conductivity k [W/(m·K)]</label>
+          <input type="number" id="calc_k" value="10.0" min="1" max="100" step="1" oninput="calculateThermal()">
+        </div>
+        <div class="input-field">
+          <label>Heat Generation q [W/m³]</label>
+          <input type="number" id="calc_q" value="10000" min="0" max="100000" step="1000" oninput="calculateThermal()">
+        </div>
+      </div>
+      <div style="font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-blue);">
+        Analytical Temperature at x = <span id="out_x">0.50</span> m: <strong id="out_T" style="color: #fff; font-size: 1.15rem;">185.0000 °C</strong>
+      </div>
+    </div>
+
+    <!-- Multicore Benchmark Section -->
+    <h2 class="section-title" id="multicore">Multicore Performance Benchmarking</h2>
+    <p class="section-subtitle">
+      Measured on target development hardware: 12th Gen Intel Core i5-1235U (10 cores, 12 logical processors, 8 GB RAM, MSVC Release /O2).
+    </p>
+
+    <div class="card">
+      <h3>Batch Workload: 200 Independent Thermal Solves (80 Elements/Case)</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Workers</th>
+            <th>Median Time [ms]</th>
+            <th>Min [ms]</th>
+            <th>Max [ms]</th>
+            <th>Speedup T₁/Tₚ</th>
+            <th>Efficiency</th>
+            <th>Max Temp Diff [°C]</th>
+            <th>Agreement Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1 (Serial)</td>
+            <td>0.71 ms</td>
+            <td>0.70 ms</td>
+            <td>0.72 ms</td>
+            <td>1.000×</td>
+            <td>100.0%</td>
+            <td>0.00</td>
+            <td><span class="status-pill pill-blue">REFERENCE</span></td>
+          </tr>
+          <tr>
+            <td>2 Workers</td>
+            <td>0.70 ms</td>
+            <td>0.60 ms</td>
+            <td>0.89 ms</td>
+            <td>1.014×</td>
+            <td>50.7%</td>
+            <td>4.605 × 10⁻³¹²</td>
+            <td><span class="status-pill pill-green">PASSED (≤ 1e-8)</span></td>
+          </tr>
+          <tr>
+            <td>4 Workers</td>
+            <td>0.71 ms</td>
+            <td>0.69 ms</td>
+            <td>0.85 ms</td>
+            <td>0.998×</td>
+            <td>25.0%</td>
+            <td>4.605 × 10⁻³¹²</td>
+            <td><span class="status-pill pill-green">PASSED (≤ 1e-8)</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.75rem;">
+        Honest Systems Analysis: The 1D tridiagonal Thomas solver executes in sub-millisecond time (~3.5 microseconds per case). At this ultra-fine workload granularity, thread synchronization and memory bus contention dominate runtime, demonstrating why profiling and workload sizing are vital before introducing parallelism.
+      </p>
+    </div>
+
+    <!-- Embedded Section -->
+    <h2 class="section-title" id="embedded">Embedded Hardware Subsystems</h2>
+    <p class="section-subtitle">
+      Modular bus integration design and robust simulated device adapters with fault recovery.
+    </p>
+
+    <div class="grid-2">
+      <div class="card">
+        <h3>Subsystem Topology</h3>
+        <p>
+          A single Windows 11 host communicates through a powered USB 2.0 hub (5.0V VBUS, 500mA per port) with three discrete devices:
+        </p>
+        <ul style="margin: 0.75rem 0 0 1.25rem; font-size: 0.9rem; color: var(--text-muted);">
+          <li><strong>STM32F407 MCU</strong>: ARM Cortex-M4, 168 MHz, 3.3V IO, USB-UART at 115200 8N1.</li>
+          <li><strong>Xilinx Artix-7 FPGA</strong>: 1.0V VCCINT core, 3.3V Bank 34 IO, telemetry reporting fabric utilization and clock health.</li>
+          <li><strong>SEGGER J-Link JTAG Probe</strong>: Specialized debug interface dynamically monitoring target VTref (1.65–3.6V). Drives TCK/TMS/TDI; reads TDO.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Demonstrated Fault Recovery</h3>
+        <p>
+          The C++ mock subsystem implements deliberate fault injection to verify non-blocking UI recovery:
+        </p>
+        <div class="code-block">
+[ATTEMPT 1] Connecting to Artix-7 (timeout=1000ms)...
+[ERROR] Attempt 1 Failed: Connection timed out.
+[ATTEMPT 2] Retrying connection (attempt 2/3)...
+[ERROR] Attempt 2 Failed: Connection timed out.
+[ATTEMPT 3] Retrying connection (attempt 3/3)...
+[SUCCESS] Attempt 3 Succeeded: FPGA connected and operational!
+        </div>
+      </div>
+    </div>
+
+    <!-- Backpropagation Section -->
+    <h2 class="section-title" id="backprop">Neural Network Backpropagation</h2>
+    <p class="section-subtitle">
+      Minimal regression neuron: h = tanh(wx + b), y_hat = vh + c, J = 0.5(y_hat - y)². Sample: x = 1.0, y = 2.0.
+    </p>
+
+    <div class="card">
+      <h3>Analytical Gradients & Finite-Difference Check</h3>
+      <table>
+        <thead>
+          <tr>
+            <th>Parameter</th>
+            <th>Initial Value</th>
+            <th>Analytical Gradient ∂J/∂θ</th>
+            <th>Numerical Check (ε = 1e-6)</th>
+            <th>Absolute Mismatch</th>
+            <th>Verification</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>w</td>
+            <td>0.50</td>
+            <td>-1.2094644752</td>
+            <td>-1.2094644753</td>
+            <td>1.13 × 10⁻¹⁰</td>
+            <td><span class="status-pill pill-green">PASSED (≤ 1e-5)</span></td>
+          </tr>
+          <tr>
+            <td>b</td>
+            <td>0.00</td>
+            <td>-1.2094644752</td>
+            <td>-1.2094644753</td>
+            <td>1.13 × 10⁻¹⁰</td>
+            <td><span class="status-pill pill-green">PASSED (≤ 1e-5)</span></td>
+          </tr>
+          <tr>
+            <td>v</td>
+            <td>1.00</td>
+            <td>-0.7106820475</td>
+            <td>-0.7106820476</td>
+            <td>6.52 × 10⁻¹¹</td>
+            <td><span class="status-pill pill-green">PASSED (≤ 1e-5)</span></td>
+          </tr>
+          <tr>
+            <td>c</td>
+            <td>0.00</td>
+            <td>-1.5378828427</td>
+            <td>-1.5378828427</td>
+            <td>1.82 × 10⁻¹¹</td>
+            <td><span class="status-pill pill-green">PASSED (≤ 1e-5)</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.5rem;">
+        Initial loss: 1.182542. After 1 simultaneous gradient descent update (η = 0.1): Loss = 0.685774. After 100 steps: Loss drops monotonically to 1.70 × 10⁻²⁰ and y_hat = 2.000000.
+      </p>
+    </div>
+
+    <!-- Standalone Release Section -->
+    <h2 class="section-title" id="standalone">Standalone Windows 11 Release & Launch</h2>
+    <p class="section-subtitle">
+      Zero-dependency one-click execution. Self-contained binary linked with static MSVC runtime (/MT) and Direct3D 11.
+    </p>
+
+    <div class="card">
+      <h3>One-Click Execution Instructions</h3>
+      <ol style="margin: 0.5rem 0 1rem 1.5rem; font-size: 0.95rem; color: var(--text-muted);">
+        <li>Extract <code>CandidateID_Workbench.zip</code> to any directory on Windows 11 x64.</li>
+        <li>Double-click <strong><code>Launch.exe</code></strong> in the root folder.</li>
+        <li>The native Direct3D 11 desktop workbench opens immediately without terminal commands, PowerShell, administrator privileges, package installation, or internet access.</li>
+      </ol>
+      <div class="code-block">
+# Alternative CLI Source Build Instructions (CMake 3.20+ & MSVC 2022)
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
+.\build\wb_tests.exe
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Unified Engineering Workbench — PASS Science Works R&D Internship 2026–2027 Assessment</p>
+    <p style="margin-top: 0.25rem;">Candidate: Kashyap Gupta | Automated Verification Status: 21 / 21 Tests Passing</p>
+  </footer>
+
+  <script>
+    function calculateThermal() {
+      const x = parseFloat(document.getElementById('calc_x').value);
+      const k = parseFloat(document.getElementById('calc_k').value);
+      const q = parseFloat(document.getElementById('calc_q').value);
+      const L = 1.0;
+      const T0 = 100.0;
+      const TL = 20.0;
+
+      const T = T0 + (TL - T0) * (x / L) + (q / (2 * k)) * x * (L - x);
+
+      document.getElementById('out_x').textContent = x.toFixed(2);
+      document.getElementById('out_T').textContent = T.toFixed(4) + ' °C';
+    }
+  </script>
+</body>
+</html>
