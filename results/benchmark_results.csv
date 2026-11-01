@@ -1,0 +1,14 @@
+# CPU: 12th Gen Intel(R) Core(TM) i5-1235U
+# Cores: 10 physical / 12 logical
+# RAM: 7 GB
+# OS: Windows 10 Home Single Language Build 26300
+# Compiler: MSVC 1944 (VS 2022 17.14+)
+# Build: Release
+# Opt flags: /O2 (Release)
+# Cases: 200, Mesh: 80, Seed: 42
+# Agreement check: PASSED
+#
+workers,median_ms,min_ms,max_ms,speedup,efficiency,max_temp_diff_C,run1_ms,run2_ms,run3_ms,run4_ms,run5_ms
+1,0.707,0.698,0.721,1.0000,1.0000,4.6048e-312,0.703,0.715,0.721,0.698,0.707
+2,0.697,0.599,0.892,1.0139,0.5070,4.6048e-312,0.892,0.697,0.797,0.624,0.599
+4,0.708,0.690,0.845,0.9984,0.2496,4.6048e-312,0.845,0.795,0.690,0.695,0.708
