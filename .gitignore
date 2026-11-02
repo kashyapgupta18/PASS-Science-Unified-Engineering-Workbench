@@ -40,3 +40,6 @@ __pycache__/
 
 CandidateID_Workbench.zip
 *.zip
+
+docs/workbench_git_bundle.bundle
+imgui.ini

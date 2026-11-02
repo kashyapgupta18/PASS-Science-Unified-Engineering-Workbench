@@ -103,3 +103,4 @@ Simultaneous parameter updates yield $w_1 = 0.6209464475$, $b_1 = 0.1209464475$,
 
 ## 7. Standalone Release, Packaging & Test Summary
 The standalone Windows 11 x64 executable (`Launch.exe`) is packaged with zero external runtime dependencies. Automated verification covers 21 test cases across 6 suites (all passing). Complete reproducible artifacts, raw CSV outputs, and documentation are stored in `results/`, `data/`, and `docs/`.
+

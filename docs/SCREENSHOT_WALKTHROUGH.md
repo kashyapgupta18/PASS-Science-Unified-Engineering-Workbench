@@ -105,3 +105,4 @@ This document serves as the equivalent timestamped screenshot walkthrough with t
   - Step 1 Loss: $0.685774$ (after first update).
   - Step 100 Loss: $1.70 \times 10^{-20}$ (monotonic descent toward zero).
   - Final Output: $\hat{y} = 1.9999999998$ (exact match to target $y=2.0$).
+

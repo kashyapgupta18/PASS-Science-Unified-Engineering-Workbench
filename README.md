@@ -240,3 +240,4 @@ Pass Science/
 1. **CAD Boundary Representation**: The geometry viewer supports standard 3D ASCII triangulated surface meshes (`.stl`). Native parametric B-Rep solids (STEP, IGES, SLDPRT) require heavyweight commercial geometric kernels and are explicitly out of scope.
 2. **Thermal Physical Scope**: The built-in FEM solver implements the 1D steady-state rod heat conduction equation. Visualizing an imported 3D STL mesh or 3D point cloud represents geometric and imported field inspection, not a 3D volumetric thermal solve of the imported CAD solid.
 3. **Hardware Simulation**: Microcontroller, FPGA, and JTAG communication layers are implemented as deterministic software mock adapters. Electrical voltage levels, current budgets, and level-shifting requirements are documented as engineering design assumptions to be validated against physical hardware documentation.
+

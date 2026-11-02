@@ -35,3 +35,4 @@ In accordance with the PASS Science Works R&D Internship Assessment requirements
 
 ## 3. Transparency & Integrity Statement
 Every line of code and documentation has been verified and tested on the local Windows 11 target machine. No synthetic benchmark numbers or fabricated hardware telemetry are presented as real physical measurements.
+

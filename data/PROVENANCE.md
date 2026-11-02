@@ -28,3 +28,4 @@ All bundled data files in this repository are self-created and synthetic. None a
 - `test_nan_values.csv`: Contains `NaN` and `Inf` tokens to verify floating-point sanitization.
 - `test_duplicate_ids.csv`: Contains non-unique `node_id` values to verify topological ID checks.
 - `test_valid_small.csv`: Minimal 5-node test dataset for unit testing.
+

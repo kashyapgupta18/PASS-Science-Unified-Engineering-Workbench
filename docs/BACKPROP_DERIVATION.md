@@ -110,3 +110,4 @@ $$\theta^{(1)} = \theta^{(0)} - \eta \frac{\partial J}{\partial \theta^{(0)}}$$
 
 The loss decreased monotonically from **$1.182542$ to $0.685774$** in a single gradient descent step.
 By Step 100, the loss reaches **$1.70 \times 10^{-20}$** and $\hat{y} = 1.9999999998 \approx 2.0$.
+

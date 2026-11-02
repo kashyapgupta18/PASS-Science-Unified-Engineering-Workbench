@@ -60,3 +60,4 @@ To avoid over-current, voltage-clamping, or ground-loop damage when physical har
 - **Phase 4: Telemetry Link Verification**: Connect USB-UART bridges; verify enumeration in Windows Device Manager; open serial ports at 115200 8N1 in read-only telemetry mode.
 - **Phase 5: JTAG Sense & TAP Discovery**: Connect `VTref` and `GND`; verify sensed target voltage matches expected target rail; run non-destructive IDCODE scan chain query.
 - **Phase 6: Active Control & Flash Operations**: Authorize halt, step, and memory access only after phases 1–5 succeed without error.
+

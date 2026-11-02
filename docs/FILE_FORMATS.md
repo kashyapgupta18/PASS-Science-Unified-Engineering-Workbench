@@ -49,3 +49,4 @@
 - **Benchmark CSV**: `workers,median_ms,min_ms,max_ms,speedup,efficiency,max_temp_diff_C,run1_ms,run2_ms,run3_ms,run4_ms,run5_ms`
 - **Backprop Loss CSV**: `step,loss,w,b,v,c,dw,db,dv,dc`
 - **Telemetry Wire Format**: JSON payload containing device metrics (temperatures, bus voltages, clock frequencies).
+

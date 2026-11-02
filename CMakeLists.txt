@@ -98,3 +98,4 @@ target_link_libraries(Launch PRIVATE
 install(TARGETS Launch DESTINATION bin)
 install(DIRECTORY data/ DESTINATION data)
 install(DIRECTORY docs/ DESTINATION docs)
+

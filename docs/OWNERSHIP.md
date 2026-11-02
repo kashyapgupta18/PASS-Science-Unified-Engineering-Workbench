@@ -22,3 +22,4 @@ No commercial solvers, proprietary CAD software, paid AI generation pipelines, o
 
 ## 3. Data Attribution
 All bundled datasets (`sample_unit_cube.stl`, `sample_temperature_synthetic.csv`, and all test fixtures) were self-created and synthetic. They do not contain confidential, proprietary, or actual client ANSYS simulation exports.
+
